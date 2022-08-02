@@ -1,0 +1,11 @@
+.header_wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 0.7rem;
+
+  h5 {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.576);
+  }
+}

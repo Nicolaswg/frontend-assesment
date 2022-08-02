@@ -1,6 +1,5 @@
 .search_wrapper {
   display: flex;
-  padding: 10px;
   background-color: transparent;
 }
 
@@ -21,7 +20,7 @@
     color: #585e5f;
 
     &::placeholder {
-      color: #8a9299;
+      color: rgba(183, 184, 185, 0.663);
     }
   }
 
