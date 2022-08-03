@@ -2,7 +2,7 @@ import React from 'react'
 import { FiSearch } from 'react-icons/fi'
 import './search_bar.scss'
 
-export const SearchBar = () => {
+const SearchBar = () => {
   return (
     <div className="search_wrapper">
       <div className="search_bar" data-testid="searchbar">
@@ -13,3 +13,4 @@ export const SearchBar = () => {
   )
 }
 
+export default SearchBar
