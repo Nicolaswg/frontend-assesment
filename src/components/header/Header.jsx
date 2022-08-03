@@ -4,7 +4,7 @@ import AddButton from './add_button/AddButton'
 
 import './header.scss'
 
-export const Header = () => {
+const Header = () => {
   return (
     <div className="header_wrapper">
       <h5 className="title" data-testid="title">Lista de pokemon</h5>
@@ -15,3 +15,5 @@ export const Header = () => {
     </div>
   )
 }
+
+export default Header;
