@@ -4,3 +4,20 @@
   margin: 1.5rem;
   padding: 2rem;
 }
+
+.header_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+
+  h5 {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.576);
+  }
+
+  .hr_container {
+    display: flex;
+    justify-content: space-between;
+  }
+}

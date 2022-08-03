@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
 import './pokemon_table.scss'
-
 import { RiEditLine, RiDeleteBin2Fill } from 'react-icons/ri'
 
-const BASE_URL = 'https://bp-pokemons.herokuapp.com/?idAuthor=3'
-
-const PokemonTable = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const pokemonList = await axios.get(BASE_URL)
-      setData(pokemonList.data);
-    })()
-  }, [])
-
+const PokemonTable = ({ list, search }) => {
+  const filteredList = list.filter((pokemon) => pokemon.name.toLowerCase().includes(search.toLowerCase()));
+  console.log(search)
   return (
     <table className="pokemon_table" data-testid="pokemon_table">
       <thead>
@@ -28,7 +17,7 @@ const PokemonTable = () => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => {
+        {filteredList.map((item) => {
           return (
             <tr key={item.id}>
               <td>{item.name}</td>
