@@ -4,7 +4,6 @@ import { RiEditLine, RiDeleteBin2Fill } from 'react-icons/ri'
 
 const PokemonTable = ({ list, search }) => {
   const filteredList = list.filter((pokemon) => pokemon.name.toLowerCase().includes(search.toLowerCase()));
-  console.log(search)
   return (
     <table className="pokemon_table" data-testid="pokemon_table">
       <thead>
