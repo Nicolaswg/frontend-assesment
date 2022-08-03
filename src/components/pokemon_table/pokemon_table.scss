@@ -1,0 +1,76 @@
+.pokemon_table {
+  margin: 10px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #d8d9db;
+  border-radius: 0.3rem;
+  background-color: #fff;
+
+  thead {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    td,
+    tr {
+      width: 200px;
+    }
+
+    tr {
+      display: flex;
+      width: 100%;
+
+      th {
+        width: 33.33%;
+        padding: 10px;
+        border-bottom: 2px solid #d8d9db;
+        border-right: 2px solid #d8d9db;
+        text-align: center;
+        font-style: bold;
+        font-size: 1rem;
+
+        &:nth-child(5) {
+          border-right: none;
+        }
+      }
+    }
+  }
+
+  tbody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    tr {
+      display: flex;
+      width: 100%;
+
+      &:nth-last-child(1) {
+        td {
+          border-bottom: none;
+        }
+      }
+
+      td {
+        display: flex;
+        width: 33.33%;
+        padding: 10px;
+        border-bottom: 2px solid #d8d9db;
+        border-right: 2px solid #d8d9db;
+
+        &:nth-child(5) {
+          border-right: none;
+          justify-content: space-evenly;
+          color: #6659ef;
+          font-size: 1.2rem;
+
+          svg {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
