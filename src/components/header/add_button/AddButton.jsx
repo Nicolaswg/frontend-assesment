@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BsPlusLg } from 'react-icons/bs'
 
+
 import './add_button.scss'
 
 const AddButton = ({ callback }) => {
@@ -13,8 +14,8 @@ const AddButton = ({ callback }) => {
 
   return (
     <div className="btn_wrapper" data-testid="add_button" onClick={handleOnclick}>
-      <BsPlusLg className="plus_icon" />
-      <p>Nuevo</p>
+      <BsPlusLg />
+      <p>{!innerOpen ? "Nuevo" : "Cerrar"}</p>
     </div>
   )
 }
