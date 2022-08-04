@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import './form_modal.scss'
 import SliderRange from './slider_range/SliderRange'
 import FormButtons from './form_buttons/FormButtons'
+import axios from 'axios'
+
+const BASE_URL = 'https://bp-pokemons.herokuapp.com/?idAuthor=4'
 
 const FormModal = ({ state, callback }) => {
   const [innerOpen, setInnerOpen] = useState(false)
@@ -10,7 +13,6 @@ const FormModal = ({ state, callback }) => {
   const [pokeName, setPokeName] = useState('');
   const [pokeImage, setPokeImage] = useState('');
 
-  console.log('botton de form', innerOpen)
   const handleAttackRangeChange = ((e) => {
     setAttackRange(e.target.value)
   })
@@ -19,13 +21,27 @@ const FormModal = ({ state, callback }) => {
     setDefenceRange(e.target.value)
   })
 
-  const POST_API_REQUEST = () => {
-    console.log('hola');
+  const RequestBody = {
+    "name": pokeName,
+    "image": pokeImage,
+    "attack": attackRange,
+    "defense": defenceRange,
+    "hp": 80,
+    "type": "normal",
+    "idAuthor": 4
   }
 
   const closeModal = () => {
     callback(!innerOpen)
     setInnerOpen(!innerOpen)
+  }
+
+  const POST_API_REQUEST = async () => {
+    await axios.post(BASE_URL, RequestBody)
+      .then((response) => {
+        console.log(response.data)
+        window.location.reload(false)
+      })
   }
   if (state) {
     return (
