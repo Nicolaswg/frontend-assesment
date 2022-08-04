@@ -6,10 +6,11 @@ import './add_button.scss'
 
 const AddButton = ({ callback }) => {
   const [innerOpen, setInnerOpen] = useState(false);
-
-  const handleOnclick = (e) => {
-    callback(innerOpen)
+  const [modalType, setModalType] = useState('')
+  const handleOnclick = () => {
+    callback(innerOpen, modalType)
     setInnerOpen(!innerOpen)
+    setModalType('new')
   }
 
   return (
