@@ -13,10 +13,6 @@
     justify-content: center;
     align-items: center;
 
-    td,
-    tr {
-      width: 200px;
-    }
 
     tr {
       display: flex;
@@ -57,6 +53,7 @@
       td {
         display: flex;
         width: 33.33%;
+        max-width: 33.33%;
         padding: 10px;
         border-bottom: 2px solid #d8d9db;
         border-right: 2px solid #d8d9db;

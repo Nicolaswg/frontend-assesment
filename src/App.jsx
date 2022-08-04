@@ -6,18 +6,21 @@ import { FiSearch } from 'react-icons/fi'
 import AddButton from './components/header/add_button/AddButton'
 import FormModal from './components/modal/FormModal'
 
-const BASE_URL = 'https://bp-pokemons.herokuapp.com/?idAuthor=4'
+const BASE_URL = 'https://bp-pokemons.herokuapp.com/'
 
 
 
 const App = () => {
-  const [pokemonList, setPokemonList] = useState([])
+  const pokeStore = JSON.parse(localStorage.getItem('pokeList'))
+  const [pokemonList, setPokemonList] = useState(pokeStore ? pokeStore : [])
   const [searchValue, setSearchValue] = useState("")
   const [isOpen, setIsOpen] = useState(false);
+  const [modalType, setModalType] = useState('');
+  const [pokemonId, setPokemonId] = useState(0);
 
   useEffect(() => {
     (async () => {
-      const pokemonList = await axios.get(BASE_URL)
+      const pokemonList = await axios.get(BASE_URL + "?idAuthor=3")
       setPokemonList(pokemonList.data)
     })()
   }, [])
@@ -25,6 +28,8 @@ const App = () => {
   const onSearchChange = ((e) => {
     setSearchValue(e.target.value)
   })
+
+  localStorage.setItem('pokeList', JSON.stringify(pokemonList))
   return (
     <div className="components_wrapper">
       <div className="header_wrapper">
@@ -41,11 +46,21 @@ const App = () => {
                 data-testid="searchbar" />
             </div>
           </div>
-          <AddButton callback={(innerOpen) => setIsOpen(innerOpen)} />
+          <AddButton callback={(innerOpen, modalType) => {
+            setIsOpen(innerOpen)
+            setModalType(modalType)
+          }} />
         </div>
       </div>
-      <PokemonTable list={pokemonList} search={searchValue} />
-      <FormModal state={isOpen} callback={(innerOpen) => setIsOpen(innerOpen)} />
+      <PokemonTable
+        list={JSON.parse(localStorage.getItem('pokeList'))}
+        search={searchValue}
+        callback={(innerOpen, modalType, rowId) => {
+          setIsOpen(innerOpen)
+          setModalType(modalType)
+          setPokemonId(rowId)
+        }} />
+      <FormModal state={isOpen} callback={(innerOpen) => setIsOpen(innerOpen)} type={modalType} pokeId={pokemonId} />
     </div>
   )
 }

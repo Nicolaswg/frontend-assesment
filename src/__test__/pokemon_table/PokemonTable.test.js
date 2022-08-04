@@ -26,7 +26,7 @@ const dummyData = [
 ]
 describe('PokemonTable component mount', () => {
   it('must render table tag', () => {
-    render(<PokemonTable list={dummyData} />)
+    render(<PokemonTable list={dummyData} search={'hola'} />)
 
     expect(screen.getByTestId('pokemon_table')).toBeInTheDocument();
   })

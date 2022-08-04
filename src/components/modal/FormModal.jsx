@@ -4,18 +4,21 @@ import SliderRange from './slider_range/SliderRange'
 import FormButtons from './form_buttons/FormButtons'
 import axios from 'axios'
 
-const BASE_URL = 'https://bp-pokemons.herokuapp.com/?idAuthor=4'
+const BASE_URL = 'https://bp-pokemons.herokuapp.com/'
 
-const FormModal = ({ state, callback }) => {
+const FormModal = ({ state, callback, type, pokeId }) => {
   const [innerOpen, setInnerOpen] = useState(false)
   const [attackRange, setAttackRange] = useState(10)
   const [defenceRange, setDefenceRange] = useState(5);
   const [pokeName, setPokeName] = useState('');
   const [pokeImage, setPokeImage] = useState('');
+  const modalType = type
+  let pokemonId = pokeId
 
   const handleAttackRangeChange = ((e) => {
     setAttackRange(e.target.value)
   })
+
 
   const handleDefenceRangeChange = ((e) => {
     setDefenceRange(e.target.value)
@@ -28,26 +31,37 @@ const FormModal = ({ state, callback }) => {
     "defense": defenceRange,
     "hp": 80,
     "type": "normal",
-    "idAuthor": 4
+    "idAuthor": 3
   }
 
   const closeModal = () => {
-    callback(!innerOpen)
+    callback(innerOpen)
     setInnerOpen(!innerOpen)
   }
 
   const POST_API_REQUEST = async () => {
-    await axios.post(BASE_URL, RequestBody)
+    await axios.post(BASE_URL + "?idAuthor=3", RequestBody)
       .then((response) => {
-        console.log(response.data)
         window.location.reload(false)
+      }).catch((e) => {
+        return
       })
   }
+
+  const MODIFY_API_REQUEST = async () => {
+    await axios.put(BASE_URL + pokemonId, RequestBody)
+      .then((response) => {
+        window.location.reload(false)
+      }).catch((e) => {
+        return
+      })
+  }
+
   if (state) {
     return (
       <div className="modal_container" data-testid="modal">
         <div className="modal_title">
-          <h5>Nuevo Pokemon</h5>
+          <h5>{modalType === 'new' ? 'Nuevo Pokemon' : 'Modificar Pokemon'}</h5>
         </div>
         <form className='form'>
           <div className="inputs_container">
@@ -60,6 +74,7 @@ const FormModal = ({ state, callback }) => {
                   value={pokeName}
                   onChange={((e) => setPokeName(e.target.value))}
                   minLength={3}
+                  maxLength={10}
                   required
                 />
               </div>
@@ -110,7 +125,7 @@ const FormModal = ({ state, callback }) => {
               text={'Guardar'}
               type={'submit'}
               styleName={pokeName.length >= 3 && pokeImage.length > 20 ? "active" : "disable"}
-              handleClick={POST_API_REQUEST}
+              handleClick={modalType === 'new' ? POST_API_REQUEST : MODIFY_API_REQUEST}
             />
             <FormButtons
               text={'Cerrar'}
@@ -123,7 +138,6 @@ const FormModal = ({ state, callback }) => {
       </div>
     )
   }
-  return null
 }
 
 export default FormModal;
