@@ -1,11 +1,23 @@
 import React from 'react'
-import { BsPlusLg } from 'react-icons/bs'
+import { AiFillSave, AiOutlineClose } from 'react-icons/ai'
 
-const FormButtons = () => {
+const FormButtons = ({ text, type, styleName, handleClick }) => {
   return (
-    <div className="btn_wrapper" data-testid="add_button" >
-      <BsPlusLg />
-    </div>
+    <>
+      {type === 'submit' ? (
+        <div className={styleName} onClick={handleClick}>
+          <AiFillSave />
+          <p>{text}</p>
+        </div>
+      ) : (
+        <div className={styleName} onClick={handleClick}>
+          <AiOutlineClose />
+          <p>{text}</p>
+        </div>
+
+      )}
+    </>
+
   )
 }
 

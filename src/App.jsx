@@ -6,14 +6,14 @@ import { FiSearch } from 'react-icons/fi'
 import AddButton from './components/header/add_button/AddButton'
 import FormModal from './components/modal/FormModal'
 
-const BASE_URL = 'https://bp-pokemons.herokuapp.com/?idAuthor=3'
+const BASE_URL = 'https://bp-pokemons.herokuapp.com/?idAuthor=4'
 
 
 
 const App = () => {
   const [pokemonList, setPokemonList] = useState([])
   const [searchValue, setSearchValue] = useState("")
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -45,7 +45,7 @@ const App = () => {
         </div>
       </div>
       <PokemonTable list={pokemonList} search={searchValue} />
-      {!isOpen ? <FormModal /> : null}
+      <FormModal state={isOpen} callback={(innerOpen) => setIsOpen(innerOpen)} />
     </div>
   )
 }

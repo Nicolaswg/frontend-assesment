@@ -6,7 +6,7 @@ import './add_button.scss'
 
 const AddButton = ({ callback }) => {
   const [innerOpen, setInnerOpen] = useState(false);
-
+  console.log('boton de header', innerOpen)
   const handleOnclick = (e) => {
     callback(innerOpen)
     setInnerOpen(!innerOpen)
@@ -15,7 +15,7 @@ const AddButton = ({ callback }) => {
   return (
     <div className="btn_wrapper" data-testid="add_button" onClick={handleOnclick}>
       <BsPlusLg />
-      <p>{!innerOpen ? "Nuevo" : "Cerrar"}</p>
+      <p>Nuevo</p>
     </div>
   )
 }
