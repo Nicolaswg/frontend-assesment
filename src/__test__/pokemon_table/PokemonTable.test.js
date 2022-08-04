@@ -1,7 +1,10 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-
+import { render, screen, waitFor } from "@testing-library/react";
+import axios from "axios";
 import PokemonTable from '../../components/pokemon_table/PokemonTable';
+
+jest.mock("axios");
+
 const dummyData = [
   {
     "id": 373,
@@ -27,7 +30,6 @@ const dummyData = [
 describe('PokemonTable component mount', () => {
   it('must render table tag', () => {
     render(<PokemonTable list={dummyData} search={'hola'} />)
-
     expect(screen.getByTestId('pokemon_table')).toBeInTheDocument();
   })
 })
