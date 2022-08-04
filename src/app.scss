@@ -1,12 +1,14 @@
 .components_wrapper {
   background-color: transparent;
   width: 95vw;
+  min-width: 528px;
   margin: 1.5rem;
   padding: 2rem;
 }
 
 .header_wrapper {
   display: flex;
+  min-width: 510px;
   flex-direction: column;
   gap: 0.7rem;
 

@@ -13,7 +13,7 @@ const BASE_URL = 'https://bp-pokemons.herokuapp.com/?idAuthor=3'
 const App = () => {
   const [pokemonList, setPokemonList] = useState([])
   const [searchValue, setSearchValue] = useState("")
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
     (async () => {
