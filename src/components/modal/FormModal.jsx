@@ -108,7 +108,7 @@ const FormModal = ({ state, callback, type, pokeId }) => {
               </div>
             </div>
             <div className='elements'>
-              <p>Ataque:</p>
+              <p>Defence:</p>
               <div className='range'>
                 <SliderRange
                   value={defenceRange}

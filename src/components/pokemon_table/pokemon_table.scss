@@ -61,6 +61,7 @@
         &:nth-child(5) {
           border-right: none;
           justify-content: space-evenly;
+          align-items: center;
           color: #6659ef;
           font-size: 1.2rem;
 
@@ -68,6 +69,20 @@
             cursor: pointer;
           }
         }
+
+        &:nth-child(2) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+          }
+        }
+
+
       }
     }
   }
